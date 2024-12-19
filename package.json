@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.45",
+    "@tabler/icons-react": "^3.26.0",
     "@types/lodash": "^4.17.13",
     "clsx": "^2.1.1",
     "framer-motion": "^11.12.0",

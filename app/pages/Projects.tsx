@@ -5,54 +5,30 @@ export const Projects = () => {
     <HeroParallax
       products={[
         {
-          title: "Major",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
+          title: "Ajin med",
+          link: "https://www.ajinmed.mn/",
+          thumbnail: "/projects/ajin_mend.png",
         },
         {
-          title: "asda",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
+          title: "funplus",
+          link: "https://www.funplus.mn/",
+          thumbnail: "/projects/funplus.png",
         },
         {
-          title: "Maasdajor",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
+          title: "z64",
+          link: "https://www.z64.mn/",
+          thumbnail: "/projects/z64.png",
+        },
+
+        {
+          title: "Арьс арчилгаа",
+          link: "https://www.skintrainer.mn/",
+          thumbnail: "/projects/skintrainer.png",
         },
         {
-          title: "asdaa",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
-        },
-        {
-          title: "qweq",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
-        },
-        {
-          title: "dfgd",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
-        },
-        {
-          title: "trt",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
-        },
-        {
-          title: "ghjg",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
-        },
-        {
-          title: "Majo405694r",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
-        },
-        {
-          title: "Maj34535or",
-          link: "https://majors.im/19berlin",
-          thumbnail: "ada",
+          title: "Эгийн голын цахилгаан станц",
+          link: "https://eghpp.mn/",
+          thumbnail: "/projects/eghpp.png",
         },
       ]}
     />

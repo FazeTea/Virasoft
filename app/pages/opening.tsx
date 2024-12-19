@@ -3,7 +3,7 @@ import { ParticleContainer } from "../components/particles";
 import { TypewriterEffect } from "../components/typingword";
 export const Openning = () => {
   return (
-    <div className="w-[100%] h-[100vh] bg-[#000]">
+    <div id="Нүүр" className="w-[100%] h-[100vh] bg-[#000]">
       <ParticleContainer />
       <div className=" w-[100%] flex justify-center p-10 pt-32">
         <div className="text-[1.2rem] font-light text-[#8c8c8c]  w-[65%] flex flex-col items-center  h-[65vh] justify-center ">

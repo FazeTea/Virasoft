@@ -3,14 +3,29 @@
 import { Openning } from "./pages/opening";
 import { Projects } from "./pages/Projects";
 import { Header } from "./components/header";
+import { Offer } from "./pages/Offer";
+import { ProjectsMain } from "./pages/projectsmain";
+import { MacbookScroll } from "./components/macbook";
+import { Footer } from "./components/footer";
+import Image from "next/image";
 export default function Home() {
   return (
-    <div>
+    <div className=" ">
       <Header />
-      <Openning />
-      <Projects />
-
-      <div className="w-[100vw] h-[100vh]  border"></div>
+      <div className=" overflow-hidden ">
+        <Openning />
+        <Projects />
+        <Offer />
+        <ProjectsMain />
+        <div className="overflow-hidden">
+          <MacbookScroll
+            src="/zippy.png"
+            title="ZIPPY Delivery - Хүргэлтийн цогц шийдэл "
+            badge={<Image className="rounded-xl" src={"/logo2.png"} alt="" width={50} height={50} />}
+          />
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 }

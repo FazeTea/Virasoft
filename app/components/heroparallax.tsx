@@ -24,7 +24,7 @@ export const HeroParallax = ({
 
   const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
-  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 1000]), springConfig);
+  const translateX = useSpring(useTransform(scrollYProgress, [0, 1], [0, 4000]), springConfig);
   const translateXReverse = useSpring(useTransform(scrollYProgress, [0, 1], [0, -1000]), springConfig);
   const rotateX = useSpring(useTransform(scrollYProgress, [0, 0.2], [15, 0]), springConfig);
   const opacity = useSpring(useTransform(scrollYProgress, [0, 0.2], [0.2, 1]), springConfig);
@@ -109,14 +109,13 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product h-96 w-[45rem] relative flex-shrink-0"
     >
       <Link href={product.link} className="block group-hover/product:shadow-2xl ">
         <Image
-          // src={product.thumbnail}
-          src={"/logo.png"}
-          height="600"
-          width="600"
+          src={product.thumbnail}
+          height={600}
+          width={600}
           className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
         />
