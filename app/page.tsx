@@ -8,6 +8,7 @@ import { ProjectsMain } from "./pages/projectsmain";
 import { MacbookScroll } from "./components/macbook";
 import { Footer } from "./components/footer";
 import Image from "next/image";
+import Head from "next/head";
 export default function Home() {
   return (
     <div className=" ">

@@ -6,9 +6,8 @@ export const Header = () => {
   const comps = ["Нүүр", "Үйлчилгээ", "Төслүүд", "Холбоо барих"];
   return (
     <div
-      className="sticky top-0 z-[9999] w-[100%] h-[5rem] flex justify-center text-[18px]"
+      className="sticky top-0 z-[9999] w-[100%] h-[5rem] flex justify-center text-[18px] font-light"
       style={{
-        fontWeight: 700,
         backgroundColor: "#1C1C1C",
         color: "#FFFFFF",
         boxShadow: "0 2px 4px rgba(255, 255, 255, 0.1)",
