@@ -1,41 +1,29 @@
 import Image from "next/image";
 import { ProjectCard } from "../components/projectcard";
 import { motion } from "framer-motion";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 export const ProjectsMain = () => {
-  const products = [
-    {
-      title: "Ajin med",
-      link: "https://www.ajinmed.mn/",
-      thumbnail: "/projects/ajin_mend.png",
-    },
-    {
-      title: "funplus",
-      link: "https://www.funplus.mn/",
-      thumbnail: "/projects/funplus.png",
-    },
-    {
-      title: "z64",
-      link: "https://www.z64.mn/",
-      thumbnail: "/projects/z64.png",
-    },
-    {
-      title: "Арьс арчилгаа",
-      link: "https://www.skintrainer.mn/",
-      thumbnail: "/projects/skintrainer.png",
-    },
-    {
-      title: "Эгийн голын цахилгаан станц",
-      link: "https://eghpp.mn/",
-      thumbnail: "/projects/eghpp.png",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    projecthandler();
+  }, []);
+  const projecthandler = async () => {
+    const { data } = await axios.get("/api/project");
+
+    setProducts(data?.data);
+  };
+  type ProductType = {
+    title: string;
+    link: string;
+    thumbnail: string;
+  };
 
   return (
     <div id="Төслүүд">
       <div className="flex justify-center text-[3rem] font-bold">Төслүүд</div>
       <div className="flex flex-wrap justify-center">
-        {products.map((el, i) => {
+        {products?.map((el: ProductType, i) => {
           const isEvenRow = i % 2 === 0; // Determine animation direction
           return (
             <motion.div

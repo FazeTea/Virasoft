@@ -14,7 +14,7 @@ export const Footer = () => {
       <div className="w-[100%] h-[20vh] flex items-center justify-around">
         <div className="border border-[#3FBB46] w-[30%]"></div>
         <div className="flex flex-col items-center">
-          <h1 className="font-semibold text-[#3FBB46]">VIRASOFT</h1>
+          <h1 className="font-semibold text-[#3FBB46]">VIRASOFT SOLUTION</h1>
           <span className="text-sm opacity-50">limited liability company</span>
         </div>
         <div className="border border-[#3FBB46] w-[30%]"></div>
