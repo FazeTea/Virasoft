@@ -1,5 +1,5 @@
 import dbConnect from "../../lib/dbConnect";
-import ProjectModel from "../../lib/models";
+import ProjectModel from "../../lib/projectmodel";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -46,6 +46,27 @@ export async function PUT(req) {
     }
 
     return NextResponse.json({ success: true, data: updatedProject }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+  }
+}
+export async function DELETE(req) {
+  await dbConnect();
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ success: false, error: "ID is required" }, { status: 400 });
+    }
+
+    const deletedProject = await ProjectModel.findByIdAndDelete(id);
+
+    if (!deletedProject) {
+      return NextResponse.json({ success: false, error: "Project not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, data: deletedProject }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ success: false, error: error.message }, { status: 400 });
   }

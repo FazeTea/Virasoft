@@ -67,7 +67,7 @@ export const HeroParallax = ({
 export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0 ">
-      <h1 className="text-xl md:text-5xl font-bold text-gray-400 font-light">
+      <h1 className="text-xl md:text-5xl  text-gray-400 font-light">
         <span> &nbsp;Бид таньд</span>
         <span>
           <FlipWords

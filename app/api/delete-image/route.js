@@ -1,32 +1,21 @@
 import fs from "fs";
-import path from "path"; // Add this import
+import path from "path";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
     const body = await req.json();
-    let { imageUrl } = body;
-    imageUrl = imageUrl.replace("/temp/", "/projects/");
+    const { imageUrl } = body;
 
     if (!imageUrl) {
       return NextResponse.json({ error: "Image URL is required" }, { status: 400 });
     }
 
-    // Construct the full file path
-    const folder = imageUrl.startsWith("/temp/") ? "temp" : "projects";
-    const filePath = path.join(process.cwd(), "public", imageUrl.replace(`/${folder}/`, `${folder}/`));
+    const filePath = path.join(process.cwd(), "public", imageUrl.replace("/projects/", "projects/"));
 
-    // Log the directory contents for debugging
-    const dirPath = path.join(process.cwd(), "public", folder);
-    console.log(
-      `${folder} directory contents before delete:`,
-      fs.existsSync(dirPath) ? fs.readdirSync(dirPath) : "Directory not found"
-    );
-
-    // Check if the file exists
     if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath); // Delete the file
-      return NextResponse.json({ message: "File deleted successfully" }, { status: 200 });
+      fs.unlinkSync(filePath);
+      return NextResponse.json({ message: "Image deleted successfully" }, { status: 200 });
     } else {
       return NextResponse.json({ error: "File not found" }, { status: 404 });
     }

@@ -34,6 +34,7 @@ export const Header = () => {
             );
           })}
           <a
+            href="#Үнийн санал"
             onClick={() => setSelected("Үнийн санал")}
             className="border border-[#3FBB46] px-3 py-2 rounded-sm text-[#3FBB46] hover:bg-[#3FBB46] hover:text-white transition"
           >

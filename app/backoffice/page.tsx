@@ -16,7 +16,7 @@ const BackOffice = () => {
     Highlight: boolean;
   };
   return (
-    <div className="w-[100vw] overflow-hidden">
+    <div className="w-[100vw] overflow-hidden ">
       <Header />
       <Create
         setProducts={setProducts}

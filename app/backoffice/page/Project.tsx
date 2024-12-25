@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
 type ProductType = {
+  _id: string;
   title: string;
   link: string;
   thumbnail: string;
@@ -114,6 +115,20 @@ export const Project = ({ setProducts, setInitialProduct, products, initialProdu
       console.error("Error updating product:", error);
     }
   };
+  const deleteHandler = async (id: string, imageUrl: string) => {
+    try {
+      await axios.delete(`/api/project?id=${id}`);
+
+      if (imageUrl) {
+        await axios.post("/api/delete-image", { imageUrl });
+      }
+
+      setProducts((prevProducts: any) => prevProducts.filter((product: any) => product._id !== id));
+      setInitialProduct((prevProducts: any) => prevProducts.filter((product: any) => product._id !== id));
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
 
   return (
     <div id="Төсөл" className="w-[100vw] p-5">
@@ -218,6 +233,12 @@ export const Project = ({ setProducts, setInitialProduct, products, initialProdu
                 >
                   Хадгалах
                 </div>
+              </div>
+              <div
+                className="w-[100%] border text-center cursor-pointer text-red-500 border-red-500"
+                onClick={() => deleteHandler(el._id, el.thumbnail)}
+              >
+                Устгах
               </div>
             </div>
           );

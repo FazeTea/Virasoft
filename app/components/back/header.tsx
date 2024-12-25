@@ -14,7 +14,7 @@ export const Header = () => {
       }}
     >
       <div className="w-[75%] h-[100%] flex justify-between items-center">
-        <a href="#Нүүр">
+        <a href="/" className="cursor">
           <Image src={"/logo.png"} alt="" width={45} height={45} />
         </a>
         <div className="flex gap-5 items-center">

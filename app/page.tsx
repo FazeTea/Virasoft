@@ -7,6 +7,7 @@ import { Offer } from "./pages/Offer";
 import { ProjectsMain } from "./pages/projectsmain";
 import { MacbookScroll } from "./components/macbook";
 import { Footer } from "./components/footer";
+import { Form } from "./pages/Form";
 import Image from "next/image";
 export default function Home() {
   return (
@@ -17,13 +18,14 @@ export default function Home() {
         <Projects />
         <Offer />
         <ProjectsMain />
-        <div className="overflow-hidden">
+        <div className="overflow-hidden ">
           <MacbookScroll
             src="/zippy.png"
             title="ZIPPY Delivery - Хүргэлтийн цогц шийдэл "
             badge={<Image className="rounded-xl" src={"/logo2.png"} alt="" width={50} height={50} />}
           />
         </div>
+        <Form />
       </div>
       <Footer />
     </div>

@@ -49,9 +49,11 @@ export const Footer = () => {
       </div>
       <div className="flex flex-col items-center w-[100%] gap-5 mt-5">
         <div className="opacity-50 flex justify-center w-[100%] text-[15px]">БИДЭНТЭЙ НЭГДЭЭРЭЙ</div>
-        <div className="border flex justify-between items-center px-10 py-2 border-[#3FBB46] hover:bg-[#3FBB46] cursor-pointer hover:text-black">
-          ҮНИЙН САНАЛ АВАХ
-        </div>
+        <a href="#Үнийн санал">
+          <div className="border flex justify-between items-center px-10 py-2 border-[#3FBB46] hover:bg-[#3FBB46] cursor-pointer hover:text-black">
+            ҮНИЙН САНАЛ АВАХ
+          </div>
+        </a>
       </div>
       <div className="flex justify-center text-[12px] pt-5 opacity-50 items-center">@2024 Faze Tea</div>
     </motion.div>

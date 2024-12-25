@@ -1,36 +1,15 @@
 "use client";
+import { useEffect, useState } from "react";
 import { HeroParallax } from "../components/heroparallax";
+import axios from "axios";
 export const Projects = () => {
-  return (
-    <HeroParallax
-      products={[
-        {
-          title: "Ajin med",
-          link: "https://www.ajinmed.mn/",
-          thumbnail: "/projects/ajin_mend.png",
-        },
-        {
-          title: "funplus",
-          link: "https://www.funplus.mn/",
-          thumbnail: "/projects/funplus.png",
-        },
-        {
-          title: "z64",
-          link: "https://www.z64.mn/",
-          thumbnail: "/projects/z64.png",
-        },
-
-        {
-          title: "Арьс арчилгаа",
-          link: "https://www.skintrainer.mn/",
-          thumbnail: "/projects/skintrainer.png",
-        },
-        {
-          title: "Эгийн голын цахилгаан станц",
-          link: "https://eghpp.mn/",
-          thumbnail: "/projects/eghpp.png",
-        },
-      ]}
-    />
-  );
+  const [highlight, setHighlight] = useState([]);
+  const highlighgetter = async () => {
+    const result = await axios.get("/api/project/highlight");
+    setHighlight(result?.data?.data);
+  };
+  useEffect(() => {
+    highlighgetter();
+  }, []);
+  return <HeroParallax products={highlight} />;
 };
