@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-
+import Link from "next/link";
 export const Header = () => {
   const [selected, setSelected] = useState("Төсөл");
   const comps = ["Үүсгэх", "Төсөл", "Санал"];
@@ -14,13 +14,13 @@ export const Header = () => {
       }}
     >
       <div className="w-[75%] h-[100%] flex justify-between items-center">
-        <a href="/" className="cursor">
+        <Link href="/" className="cursor">
           <Image src={"/logo.png"} alt="" width={45} height={45} />
-        </a>
+        </Link>
         <div className="flex gap-5 items-center">
           {comps?.map((el) => {
             return (
-              <a
+              <Link
                 style={{
                   color: selected == el ? "#3FBB46" : "white",
                 }}
@@ -30,7 +30,7 @@ export const Header = () => {
                 onClick={() => setSelected(el)}
               >
                 {el}
-              </a>
+              </Link>
             );
           })}
         </div>
