@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-
 import Image from "next/image";
 import Link from "next/link";
 import { FlipWords } from "./flipword";
+
 export const HeroParallax = ({
   products,
 }: {
@@ -33,7 +34,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="pt-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d] bg-black "
+      className="pt-20 md:pt-40 overflow-hidden antialiased relative flex flex-col bg-black [perspective:1000px] [transform-style:preserve-3d] h-screen"
     >
       <Header />
       <motion.div
@@ -43,18 +44,19 @@ export const HeroParallax = ({
           translateY,
           opacity,
         }}
+        className="space-y-10 px-4 sm:px-8 lg:px-16 flex-grow"
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20 ">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
           {firstRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row  mb-20 space-x-20 ">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
           {secondRow.map((product) => (
             <ProductCard product={product} translate={translateXReverse} key={product.title} />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {thirdRow.map((product) => (
             <ProductCard product={product} translate={translateX} key={product.title} />
           ))}
@@ -66,12 +68,12 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0 ">
-      <h1 className="text-xl md:text-5xl  text-gray-400 font-light">
-        <span> &nbsp;Бид таньд</span>
+    <div className="max-w-7xl mx-auto py-10 md:py-20 px-4 sm:px-8 lg:px-16">
+      <h1 className="text-lg md:text-3xl lg:text-5xl text-gray-400 font-light">
+        <span>&nbsp;Бид таньд</span>
         <span>
           <FlipWords
-            className={"text-7xl font-semibold"}
+            className="text-2xl md:text-4xl lg:text-7xl font-semibold"
             words={[
               "Урт хугацааны стратеги түншлэл",
               "Үе шатчилсан системчилсэн хөтөлбөр",
@@ -82,7 +84,7 @@ export const Header = () => {
         <br />
         &nbsp;үйлчилгээг санал болгож байна
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
+      <p className="max-w-2xl text-sm md:text-lg lg:text-xl mt-4 md:mt-8 dark:text-neutral-200">
         Дэвшилтэт технологиор дамжуулан таны бизнест тохирсон инновацийн бүтээлч шийдлийг бид бүтээж байна.
       </p>
     </div>
@@ -102,16 +104,12 @@ export const ProductCard = ({
 }) => {
   return (
     <motion.div
-      style={{
-        x: translate,
-      }}
-      whileHover={{
-        y: -20,
-      }}
+      style={{ x: translate }}
+      whileHover={{ y: -20 }}
       key={product.title}
-      className="group/product h-96 w-[45rem] relative flex-shrink-0"
+      className="group/product h-72 sm:h-96 w-full relative flex-shrink-0"
     >
-      <Link href={product.link} target="blank" className="block group-hover/product:shadow-2xl ">
+      <Link href={product.link} target="_blank" className="block group-hover/product:shadow-2xl">
         <Image
           src={product.thumbnail}
           height={600}
@@ -121,7 +119,9 @@ export const ProductCard = ({
         />
       </Link>
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">{product.title}</h2>
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white text-sm md:text-lg">
+        {product.title}
+      </h2>
     </motion.div>
   );
 };

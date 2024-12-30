@@ -43,7 +43,6 @@ export const Form = () => {
 
     await formcreator();
 
-    // SweetAlert2 success message
     Swal.fire({
       icon: "success",
       title: "Амжилттай",
@@ -63,16 +62,19 @@ export const Form = () => {
   };
 
   return (
-    <div id="Үнийн санал" className="min-h-screen flex items-center justify-center bg-[#141414] text-white py-20">
+    <div
+      id="Үнийн санал"
+      className="min-h-screen flex items-center justify-center bg-[#141414] text-white py-10 px-4 md:py-20 md:px-0"
+    >
       <motion.div
         ref={containerRef}
-        className="w-full max-w-lg p-10 bg-[#1c1c1e] rounded-lg shadow-xl"
+        className="w-full max-w-lg p-5 md:p-10 bg-[#1c1c1e] rounded-lg shadow-xl"
         initial={{ opacity: 0, x: 100 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         <motion.h1
-          className="text-2xl font-semibold mb-12 text-center bg-clip-text text-transparent"
+          className="text-lg md:text-2xl font-semibold mb-6 md:mb-12 text-center bg-clip-text text-transparent"
           style={{
             backgroundImage: "linear-gradient(90deg, #3FBB46, #30C0A5, #3FBB46)",
           }}
@@ -84,7 +86,7 @@ export const Form = () => {
         </motion.h1>
 
         <motion.form
-          className="space-y-8"
+          className="space-y-6 md:space-y-8"
           onSubmit={handleSubmit}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -116,7 +118,7 @@ export const Form = () => {
                 value={formData[field.name as keyof typeof formData]}
                 onChange={handleInputChange}
                 placeholder={field.placeholder}
-                className="w-full px-4 py-3 bg-[#242424] text-white rounded-sm border border-[#2c2c2e] placeholder-gray-500 focus:ring-1 focus:ring-green-500 outline-none"
+                className="w-full px-3 py-2 md:px-4 md:py-3 bg-[#242424] text-white rounded-sm border border-[#2c2c2e] placeholder-gray-500 focus:ring-1 focus:ring-green-500 outline-none"
               />
             </motion.div>
           ))}
@@ -133,7 +135,7 @@ export const Form = () => {
               name="organizationType"
               value={formData.organizationType}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 bg-[#242424] text-white rounded-sm border border-[#2c2c2e] placeholder-gray-500 focus:ring-1 focus:ring-green-500 outline-none appearance-none"
+              className="w-full px-3 py-2 md:px-4 md:py-3 bg-[#242424] text-white rounded-sm border border-[#2c2c2e] placeholder-gray-500 focus:ring-1 focus:ring-green-500 outline-none appearance-none"
             >
               <option value="">Байгууллагын төрлөө сонгоно уу</option>
               {organizationTypes.map((type) => (
@@ -156,7 +158,7 @@ export const Form = () => {
               name="serviceTypes"
               value={formData.serviceTypes}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 bg-[#242424] text-white rounded-sm border border-[#2c2c2e] placeholder-gray-500 focus:ring-1 focus:ring-green-500 outline-none appearance-none"
+              className="w-full px-3 py-2 md:px-4 md:py-3 bg-[#242424] text-white rounded-sm border border-[#2c2c2e] placeholder-gray-500 focus:ring-1 focus:ring-green-500 outline-none appearance-none"
             >
               <option value="">Үйлчилгээний төрлөө сонгоно уу</option>
               {serviceTypes.map((type) => (
@@ -169,7 +171,7 @@ export const Form = () => {
 
           <motion.button
             type="submit"
-            className={`w-full py-3 ${
+            className={`w-full py-2 md:py-3 ${
               formData.name && formData.email && formData.phone && formData.organizationType && formData.serviceTypes
                 ? "bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600"
                 : "bg-gray-600 cursor-not-allowed"
