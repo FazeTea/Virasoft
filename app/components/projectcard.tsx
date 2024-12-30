@@ -17,7 +17,6 @@ export const ProjectCard = ({
   containerClassName?: string;
 }) => {
   const [transform, setTransform] = useState("translate(-50%,-50%) rotateX(0deg)");
-  console.log();
 
   const onMouseEnter = () => {
     setTransform("translate(-50%,-50%) rotateX(40deg) scale(0.8)");
