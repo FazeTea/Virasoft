@@ -15,7 +15,7 @@ export const Header = () => {
     >
       <div className="w-[75%] h-[100%] flex justify-between items-center">
         <a href="#Нүүр">
-          <Image src={"/logo.png"} alt="" width={45} height={45} />
+          <Image src={"/logo.png"} alt="" width={45} height={45} className="cover" />
         </a>
         <div className="flex gap-5 items-center">
           {comps?.map((el) => {

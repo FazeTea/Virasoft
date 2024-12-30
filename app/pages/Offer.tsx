@@ -19,12 +19,12 @@ export const Offer = () => {
               илэрхийлэгдсэн технологийн шийдэл санал болгоно.
             </div>
             <div className="flex h-[20vh] gap-10">
-              <Image className="rounded-xl" src={"/dev3.jpeg"} alt="" width={200} height={200} />
-              <Image className="rounded-xl" src={"/dev2.jpeg"} alt="" width={200} height={200} />
+              <Image className="rounded-xl object-cover" src={"/dev3.jpeg"} alt="" width={200} height={200} />
+              <Image className="rounded-xl object-cover" src={"/dev2.jpeg"} alt="" width={200} height={200} />
             </div>
             <div className="flex h-[20vh] gap-10">
-              <Image className="rounded-xl" src={"/dev4.jpeg"} alt="" width={200} height={200} />
-              <Image className="rounded-xl" src={"/dev1.jpeg"} alt="" width={200} height={200} />
+              <Image className="rounded-xl object-cover" src={"/dev4.jpeg"} alt="" width={200} height={200} />
+              <Image className="rounded-xl object-cover" src={"/dev1.jpeg"} alt="" width={200} height={200} />
             </div>
           </div>
         </motion.div>
@@ -46,7 +46,7 @@ export const Offer = () => {
               харилцааны урлаг юм.
             </div>
             <div className="flex h-[50vh] gap-10 w-[100%]">
-              <Image className="rounded-xl" src={"/design.png"} alt="" width={550} height={200} />
+              <Image className="rounded-xl object-cover" src={"/design.png"} alt="" width={550} height={200} />
             </div>
           </div>
         </motion.div>

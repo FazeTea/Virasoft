@@ -578,5 +578,5 @@ export const OptionKey = ({ className }: { className: string }) => {
 };
 
 const AceternityLogo = () => {
-  return <Image className="rounded-xl" src={"/logo.png"} alt="" width={25} height={25} />;
+  return <Image className="rounded-xl object-cover" src={"/logo.png"} alt="" width={25} height={25} />;
 };

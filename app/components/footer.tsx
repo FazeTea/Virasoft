@@ -28,16 +28,16 @@ export const Footer = () => {
         <div className="w-[40%] flex flex-col items-center gap-5">
           <div className="flex gap-10">
             <a target="blank" href="https://maps.app.goo.gl/8X62DwbCbjEtsHhc7?g_st=ic">
-              <Image src={"/location.png"} alt="" width={25} height={30} />
+              <Image src={"/location.png"} alt="" width={25} height={30} className="cover" />
             </a>
             <a
               target="blank"
               href="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJZcRPPMMtZqXbmGNfxPkkWCLXwCGNCXpQhVlbsVkHpmGFHZJwMVvzBnlchGhKfDzZfmvFg"
             >
-              <Image src={"/gmail.png"} alt="" width={25} height={30} />
+              <Image src={"/gmail.png"} alt="" width={25} height={30} className="cover" />
             </a>
             <a target="blank" href="https://www.facebook.com/profile.php?id=61556798619609">
-              <Image src={"/facebook.png"} alt="" width={25} height={30} />
+              <Image src={"/facebook.png"} alt="" width={25} height={30} className="cover" />
             </a>
           </div>
           <div className="flex h-[7vh] border border-[#3FBB46]"></div>
