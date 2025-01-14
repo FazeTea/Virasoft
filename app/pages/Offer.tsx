@@ -13,17 +13,17 @@ export const Offer = () => {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex justify-center"
         >
-          <div className="w-full md:w-[60%] flex flex-col gap-10 px-4 justify-center items-center">
+          <div className="w-full md:w-[60%] flex flex-col gap-10 px-4 ">
             <div>
               Танай байгууллагын имижийг зорилтот хэрэглэгчдэд хамгийн сүүлийн үеийн чиг хандлага, өнгө дүр төрхөөр
               илэрхийлэгдсэн технологийн шийдэл санал болгоно.
             </div>
-            <div className="flex flex-wrap gap-4 ">
+            {/* <div className="flex flex-wrap gap-4 ">
               <Image className="rounded-xl object-cover" src={"/dev3.jpeg"} alt="" width={200} height={200} />
               <Image className="rounded-xl object-cover" src={"/dev2.jpeg"} alt="" width={200} height={200} />
               <Image className="rounded-xl object-cover" src={"/dev4.jpeg"} alt="" width={200} height={200} />
               <Image className="rounded-xl object-cover" src={"/dev1.jpeg"} alt="" width={200} height={200} />
-            </div>
+            </div> */}
           </div>
         </motion.div>
       ),
