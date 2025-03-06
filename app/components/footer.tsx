@@ -60,7 +60,7 @@ export const Footer = () => {
         </a>
       </div>
 
-      <div className="flex justify-center text-[10px] md:text-[12px] pt-5 opacity-50 items-center">@2024 Faze Tea</div>
+      <div className="flex justify-center text-[10px] md:text-[12px] pt-5 opacity-50 items-center">Бүх эрх хуулиар хамгаалагдсан © 2025 он. Вирасофт солюшин ХХК</div>
     </motion.div>
   );
 };
