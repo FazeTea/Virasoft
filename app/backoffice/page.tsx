@@ -6,6 +6,7 @@ import { Offer } from "./page/Offer";
 import { Create } from "./page/Create";
 import { useState } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Project } from "./page/Project";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -26,15 +27,20 @@ const BackOffice = () => {
   return (
     <div className="w-[100vw] overflow-hidden ">
       <Header />
-      <ThemeProvider theme={darkTheme}>
+      {/* <ThemeProvider theme={darkTheme}>
         <Projects
           setProducts={setProducts}
           products={products}
           initialProduct={initialProduct}
           setInitialProduct={setInitialProduct}
         />
-      </ThemeProvider>
-
+      </ThemeProvider> */}
+      <Project
+        setProducts={setProducts}
+        products={products}
+        initialProduct={initialProduct}
+        setInitialProduct={setInitialProduct}
+      />
       <Create
         setProducts={setProducts}
         products={products}

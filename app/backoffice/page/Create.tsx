@@ -2,7 +2,12 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const Create = ({ setProducts, setInitialProduct, products, initialProduct }: any) => {
+export const Create = ({
+  setProducts,
+  setInitialProduct,
+  products,
+  initialProduct,
+}: any) => {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [Category, setCategory] = useState("Web");
@@ -104,7 +109,20 @@ export const Create = ({ setProducts, setInitialProduct, products, initialProduc
           </div>
           <div className="flex justify-center">
             <label className="cursor-pointer">
-              <Image src={image || "/placeholder.png"} alt="Upload" className="cover" width={200} height={200} />
+              {/* <Image
+                src={image || "/placeholder.png"}
+                alt="Upload"
+                className="cover"
+                width={200}
+                height={200}
+              /> */}
+              <img
+                src={image || "/placeholder.png"}
+                alt="Upload"
+                className="cover"
+                width={200}
+                height={200}
+              />
               <input
                 type="file"
                 accept="image/*"
@@ -118,7 +136,8 @@ export const Create = ({ setProducts, setInitialProduct, products, initialProduc
               <div
                 key={ej}
                 style={{
-                  border: ej === Category ? "1px solid #3FBB46" : "1px solid white",
+                  border:
+                    ej === Category ? "1px solid #3FBB46" : "1px solid white",
                   color: ej === Category ? "#3FBB46" : "white",
                   opacity: ej === Category ? 1 : 0.5,
                 }}
@@ -149,7 +168,8 @@ export const Create = ({ setProducts, setInitialProduct, products, initialProduc
               onClick={createHandler}
               style={{
                 opacity: title && link && Category && image ? 1 : 0.5,
-                pointerEvents: title && link && Category && image ? "auto" : "none",
+                pointerEvents:
+                  title && link && Category && image ? "auto" : "none",
                 border: "1px solid #3FBB46",
                 color: "#3FBB46",
               }}
