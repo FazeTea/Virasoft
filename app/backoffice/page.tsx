@@ -1,10 +1,16 @@
 // backoffice/project/page.js or page.tsx
 "use client";
 import { Header } from "@/app/components/back/header";
-import { Project } from "./page/Project";
+import { Projects } from "./page/Projects";
 import { Offer } from "./page/Offer";
 import { Create } from "./page/Create";
 import { useState } from "react";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 const BackOffice = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [initialProduct, setInitialProduct] = useState<ProductType[]>([]);
@@ -15,16 +21,21 @@ const BackOffice = () => {
     Category: "Web" | "App" | "System";
     Highlight: boolean;
   };
+  console.log({ products });
+
   return (
     <div className="w-[100vw] overflow-hidden ">
       <Header />
+      <ThemeProvider theme={darkTheme}>
+        <Projects
+          setProducts={setProducts}
+          products={products}
+          initialProduct={initialProduct}
+          setInitialProduct={setInitialProduct}
+        />
+      </ThemeProvider>
+
       <Create
-        setProducts={setProducts}
-        products={products}
-        initialProduct={initialProduct}
-        setInitialProduct={setInitialProduct}
-      />
-      <Project
         setProducts={setProducts}
         products={products}
         initialProduct={initialProduct}

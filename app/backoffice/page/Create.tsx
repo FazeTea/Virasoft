@@ -16,7 +16,8 @@ export const Create = ({ setProducts, setInitialProduct, products, initialProduc
     setInitialProduct(data?.data || []);
   };
   const handleFileUpload = async (e: any) => {
-    const file = e.target.files[0];
+    const file = e;
+
     if (!file) return;
     const formData = new FormData();
     formData.append("file", file);
@@ -59,7 +60,6 @@ export const Create = ({ setProducts, setInitialProduct, products, initialProduc
         },
       });
 
-      // Reset the form
       setTitle("");
       setLink("");
       setCategory("");
@@ -85,7 +85,7 @@ export const Create = ({ setProducts, setInitialProduct, products, initialProduc
             <div className="border-0 border-b">
               <input
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => console.log(e.target.value)}
                 type="text"
                 className="bg-transparent border-none outline-none text-[#3FBB46] font-semibold"
               />
@@ -105,7 +105,12 @@ export const Create = ({ setProducts, setInitialProduct, products, initialProduc
           <div className="flex justify-center">
             <label className="cursor-pointer">
               <Image src={image || "/placeholder.png"} alt="Upload" className="cover" width={200} height={200} />
-              <input type="file" accept="image/*" className="hidden" onChange={handleFileUpload} />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e: any) => handleFileUpload(e.target.files[0])}
+              />
             </label>
           </div>
           <div className="flex justify-center gap-2">
