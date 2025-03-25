@@ -10,20 +10,7 @@ type ProductType = {
   Category: "Web" | "App" | "System";
   Highlight: boolean;
 };
-export const checkStatus = async (url: any) => {
-  try {
-    const response = await fetch(`/api/status-check?url=${encodeURIComponent(url)}`);
-    const result = await response.json();
 
-    if (result.success) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    return false;
-  }
-};
 import { useRouter } from "next/navigation";
 export default function Detail({ params }: any) {
   const resolvedParams: any = React.use(params); // Unwrap the Promise
@@ -33,6 +20,20 @@ export default function Detail({ params }: any) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [status, setStatus] = useState<any>(null);
   const router = useRouter();
+  const checkStatus = async (url: any) => {
+    try {
+      const response = await fetch(`/api/status-check?url=${encodeURIComponent(url)}`);
+      const result = await response.json();
+
+      if (result.success) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false;
+    }
+  };
   const toggleExpand = () => {
     setIsExpanded((prev) => !prev);
   };
