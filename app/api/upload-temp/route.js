@@ -12,8 +12,6 @@ export const config = {
 
 function convertToNodeRequest(req) {
   const readableStream = Readable.from(req.body);
-
-  // Create a mock Node.js request object
   const nodeReq = Object.create(readableStream);
   nodeReq.headers = Object.fromEntries(req.headers.entries()); // Convert Headers to plain object
   return nodeReq;
@@ -21,8 +19,6 @@ function convertToNodeRequest(req) {
 
 export async function POST(req) {
   const tempDir = path.join(process.cwd(), "public/temp");
-
-  // Ensure the temp directory exists
   if (!fs.existsSync(tempDir)) {
     fs.mkdirSync(tempDir, { recursive: true });
   }
@@ -53,7 +49,7 @@ export async function POST(req) {
     }
 
     const fileName = path.basename(file.newFilename);
-    const filePath = `/temp/${fileName}`;
+    const filePath = `temp/${fileName}`;
 
     return NextResponse.json({ imageUrl: filePath }, { status: 200 });
   } catch (error) {
