@@ -3,6 +3,7 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
 const columns: GridColDef[] = [
   {
     field: "thumbnail",
@@ -10,6 +11,7 @@ const columns: GridColDef[] = [
     width: 150,
     renderCell: (params) => <Image width={100} height={100} src={params.value} alt="Upload" />,
     sortable: false,
+    filterable: false,
   },
   { field: "title", headerName: "Нэр", width: 200, sortable: false },
   {
@@ -45,9 +47,10 @@ const columns: GridColDef[] = [
     renderCell: (params) => (
       <div className="flex justify-center items-center h-[50px]">
         <div
-          className={`rounded-full bg-[${
-            params?.value ? "#53BD90" : "#3A88C0"
-          }] w-[60px] h-[25px] flex justify-center items-center text-xs  `}
+          style={{
+            backgroundColor: params?.value ? "#53BD90" : "#3A88C0",
+          }}
+          className={`rounded-full w-[60px] h-[25px] flex justify-center items-center text-xs  `}
         >
           {params?.value ? "Онцлох" : "Энгийн"}
         </div>
@@ -57,7 +60,7 @@ const columns: GridColDef[] = [
   { field: "createdAt", headerName: "ОГНОО", valueGetter: (value: any, row) => value?.split("T")[0], sortable: false },
 ];
 
-const paginationModel = { page: 0, pageSize: 5 };
+const paginationModel = { page: 0, pageSize: 10 };
 
 export default function DataTable({ rows }) {
   const router = useRouter();

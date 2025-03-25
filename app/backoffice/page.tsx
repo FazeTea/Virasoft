@@ -22,32 +22,23 @@ const BackOffice = () => {
     Category: "Web" | "App" | "System";
     Highlight: boolean;
   };
-  console.log({ products });
 
   return (
     <div className="w-[100vw] overflow-hidden ">
       <Header />
-      {/* <ThemeProvider theme={darkTheme}>
-        <Projects
-          setProducts={setProducts}
-          products={products}
-          initialProduct={initialProduct}
-          setInitialProduct={setInitialProduct}
-        />
-      </ThemeProvider> */}
-      <Project
+      <Create setProducts={setProducts} setInitialProduct={setInitialProduct} />
+
+      {/* <Project
         setProducts={setProducts}
         products={products}
         initialProduct={initialProduct}
         setInitialProduct={setInitialProduct}
-      />
-      <Create
-        setProducts={setProducts}
-        products={products}
-        initialProduct={initialProduct}
-        setInitialProduct={setInitialProduct}
-      />
+      /> */}
+
       <Offer />
+      <ThemeProvider theme={darkTheme}>
+        <Projects setProducts={setProducts} products={products} setInitialProduct={setInitialProduct} />
+      </ThemeProvider>
       {/* {products?.map((el: ProductType, i) => {
         return <div key={i}></div>;
       })} */}
