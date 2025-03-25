@@ -16,7 +16,6 @@ export async function POST(req) {
   await dbConnect();
   try {
     const body = await req.json(); // Parse JSON body
-    console.log({ body });
 
     const data = await ProjectModel.create(body?.body);
     return NextResponse.json({ success: true, data }, { status: 201 });

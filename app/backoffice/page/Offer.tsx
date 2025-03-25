@@ -22,12 +22,12 @@ export const Offer = () => {
       <h1 className="text-3xl font-semibold mb-10 text-center text-transparent bg-clip-text bg-gradient-to-r from-[#3FBB46] to-[#30C0A5]">
         Үнийн саналууд
       </h1>
-      <div className="max-w-4xl mx-auto p-5 space-y-6">
+      <div className="max-w-7xl mx-auto p-5 space-y-6 flex flex-wrap  justify-between  items-end">
         {submissions.length > 0 ? (
           submissions.map((submission: any, index) => (
             <div
               key={index}
-              className="p-6 bg-[#1c1c1e] rounded-md shadow-lg border border-[#2c2c2e] transition-transform transform hover:scale-[1.02]"
+              className="p-6 bg-[#1c1c1e] rounded-md shadow-lg border border-[#2c2c2e] transition-transform transform hover:scale-[1.02] w-[30%] h-[300px] "
             >
               <div className="mb-4 flex flex-col space-y-2">
                 <p className="text-lg font-medium">

@@ -38,13 +38,13 @@ export const ProjectsMain = () => {
                 <div className="flex flex-col w-[21.5rem] gap-3">
                   <div className="font-bold text-[20px]">{el.title}</div>
                   <div className="rounded overflow-hidden">
-                    <Image
+                    <img
                       className="object-cover"
                       src={el?.thumbnail}
                       height={600}
                       width={600}
                       alt={el.title}
-                      layout="responsive"
+                      // layout="responsive"
                     />
                   </div>
                 </div>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 export const Header = () => {
   const [selected, setSelected] = useState("Төсөл");
-  const comps = ["Үүсгэх", "Төсөл", "Санал"];
+  const comps = ["Төсөл", "Санал"];
   return (
     <div
       className="sticky top-0 z-[9999] w-[100%] h-[5rem] flex justify-center text-[18px] font-light"
