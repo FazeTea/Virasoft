@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ImageKitProvider, IKUpload, IKImage } from "imagekitio-next";
 import { divide } from "lodash";
-const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
-const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
+const publicKey = "public_9YXxFL1IDFKBLBtp5gRvmjcGD1o=";
+const urlEndpoint = "https://ik.imagekit.io/pkjype9ax/";
 export const Create = ({ setProducts, setInitialProduct, handleClose }: any) => {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
