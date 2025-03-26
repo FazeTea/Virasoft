@@ -11,8 +11,8 @@ type ProductType = {
   Highlight: boolean;
 };
 import { ImageKitProvider, IKUpload, IKImage } from "imagekitio-next";
-const publicKey = "public_9YXxFL1IDFKBLBtp5gRvmjcGD1o=";
-const urlEndpoint = "https://ik.imagekit.io/pkjype9ax/";
+const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
+const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 
 import { useRouter } from "next/navigation";
 export default function Detail({ params }: any) {
