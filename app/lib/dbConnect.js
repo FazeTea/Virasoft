@@ -1,7 +1,7 @@
 // lib/dbConnect.js
 import mongoose from "mongoose";
 
-const MONGODB_URI = "mongodb+srv://FazeTea:Lol999za@zippy.ffacn8x.mongodb.net/Virasoft";
+const MONGODB_URI = process.env.MONGODB_STRING;
 
 if (!MONGODB_URI) {
   throw new Error("Ito:There is problem with connection url");
