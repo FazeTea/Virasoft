@@ -26,7 +26,7 @@ const BackOffice = () => {
   return (
     <div className="w-[100vw] overflow-hidden ">
       <Header />
-      <Create setProducts={setProducts} setInitialProduct={setInitialProduct} />
+      {/* <Create setProducts={setProducts} setInitialProduct={setInitialProduct} /> */}
 
       {/* <Project
         setProducts={setProducts}
@@ -35,9 +35,9 @@ const BackOffice = () => {
         setInitialProduct={setInitialProduct}
       /> */}
 
-      <Offer />
       <ThemeProvider theme={darkTheme}>
         <Projects setProducts={setProducts} products={products} setInitialProduct={setInitialProduct} />
+        <Offer />
       </ThemeProvider>
       {/* {products?.map((el: ProductType, i) => {
         return <div key={i}></div>;

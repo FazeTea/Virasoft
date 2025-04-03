@@ -49,7 +49,7 @@ export async function POST(req) {
     }
 
     const fileName = path.basename(file.newFilename);
-    const filePath = `temp/${fileName}`;
+    const filePath = `/temp/${fileName}`;
 
     return NextResponse.json({ imageUrl: filePath }, { status: 200 });
   } catch (error) {

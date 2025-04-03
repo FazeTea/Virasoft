@@ -10,6 +10,9 @@ type ProductType = {
   Category: "Web" | "App" | "System";
   Highlight: boolean;
 };
+import { ImageKitProvider, IKUpload, IKImage } from "imagekitio-next";
+const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
+const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
 
 import { useRouter } from "next/navigation";
 export default function Detail({ params }: any) {
@@ -19,7 +22,9 @@ export default function Detail({ params }: any) {
   const [initialProject, setInitialProject] = useState<any>();
   const [isExpanded, setIsExpanded] = useState(false);
   const [status, setStatus] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   const checkStatus = async (url: any) => {
     try {
       const response = await fetch(`/api/status-check?url=${encodeURIComponent(url)}`);
@@ -62,23 +67,26 @@ export default function Detail({ params }: any) {
   const updateHandler = async () => {
     try {
       const result = await axios.put("/api/project", { body: project });
+      await deleteImage(initialProject?.thumbnail);
       const updatedProduct = result.data.data;
+
       setProject(updatedProduct);
       setInitialProject(updatedProduct);
     } catch (error) {
       console.error("Error updating product:", error);
     }
   };
-  const deleteHandler = async (id: string, imageUrl: string) => {
+  const deleteHandler = async (id: string) => {
     const isConfirmed = window.confirm("Энэхүү төслийг устгахдаа итгэлтэй байна уу?");
     if (!isConfirmed) {
       return;
     }
     try {
       await axios.delete(`/api/project?id=${id}`);
-      if (imageUrl) {
-        await axios.post("/api/delete-image", { imageUrl });
-      }
+      await deleteImage(project?.thumbnail);
+      // if (imageUrl) {
+      //   await axios.post("/api/delete-image", { imageUrl });
+      // }
       router.back();
       alert("Төсөл амжилттай устлаа");
     } catch (error) {
@@ -86,6 +94,49 @@ export default function Detail({ params }: any) {
       alert("There was an error deleting the item.");
     }
   };
+  const deleteImage = async (fileId) => {
+    try {
+      const response = await axios.delete("/api/image", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          fileId,
+        },
+      });
+      const data = await response.data;
+      console.log("Response:", data);
+    } catch (error) {
+      console.error("Error deleting image:", error);
+    }
+  };
+
+  //---------------------------------------------------
+  const authenticator = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/image");
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Request failed with status ${response.status}: ${errorText}`);
+      }
+      const data = await response.json();
+      const { signature, expire, token } = data;
+      return { signature, expire, token };
+    } catch (error: any) {
+      setLoading(false);
+      throw new Error(`Authentication request failed: ${error.message}`);
+    }
+  };
+  const onError = (err) => {
+    setLoading(false);
+  };
+
+  const onSuccess = (res) => {
+    handleInputChange("thumbnail", res?.url + "#" + res?.fileId);
+    setLoading(false);
+  };
+
   return (
     <div className="w-[100vw] h-[100vh] flex justify-center py-20 bg-[#000]">
       <div className="w-[80%] flex flex-col gap-10   ">
@@ -118,13 +169,17 @@ export default function Detail({ params }: any) {
          hover:shadow-[0px_6px_20px_rgba(63,187,70,1)]"
                 href={project?.link}
               >
-                <Image
-                  className=" rounded-md border-[0.5px] border-[#3d3d3d]"
-                  width={500}
-                  height={100}
-                  src={project?.thumbnail}
-                  alt="Upload"
-                />
+                {loading ? (
+                  <div className="w-[500px] h-[400px] border flex  justify-center items-center">Loading...</div>
+                ) : (
+                  <Image
+                    className=" rounded-md border-[0.5px] border-[#3d3d3d]"
+                    width={500}
+                    height={100}
+                    src={project?.thumbnail}
+                    alt="Upload"
+                  />
+                )}
               </a>
               <div className="flex justify-between  w-[50%]">
                 <div className="flex gap-4  flex-col">
@@ -156,7 +211,7 @@ export default function Detail({ params }: any) {
                           }}
                           className={`w-[10px] h-[10px] rounded-full`}
                         ></div>
-                        <p className="text-sm ">{status != null ? (status ? "Ready" : "Down") : "Waiting..."}</p>
+                        <p className="text-sm ">{status != null ? (status ? "Ready" : "Унасан") : "Waiting..."}</p>
                       </div>
                     </div>
                     <div>
@@ -168,7 +223,7 @@ export default function Detail({ params }: any) {
 
                 <div
                   style={{
-                    backgroundColor: params?.value ? "#53BD90" : "#3A88C0",
+                    backgroundColor: project?.Highlight ? "#53BD90" : "#3A88C0",
                   }}
                   className={`rounded-full w-[60px] h-[35px] flex justify-center items-center text-xs  `}
                 >
@@ -177,13 +232,12 @@ export default function Detail({ params }: any) {
               </div>
             </div>
             <div
-              onClick={toggleExpand}
               style={{
                 borderTop: "0.5px solid #3d3d3d ",
               }}
-              className="cursor-pointer px-8 py-4 flex items-center justify-between"
+              className=" px-8 py-4 flex items-center justify-between"
             >
-              <div className="flex items-center">
+              <div onClick={toggleExpand} className="flex items-center cursor-pointer">
                 <svg
                   style={{
                     transform: `rotate(${isExpanded ? 90 : 0}deg)`,
@@ -206,7 +260,7 @@ export default function Detail({ params }: any) {
                 <div>Төслийн дэлгэрэнгүй</div>
               </div>
               <div
-                onClick={() => deleteHandler(project._id, project.thumbnail)}
+                onClick={() => deleteHandler(project?._id)}
                 className="border rounded-sm py-1 px-3 text-sm  cursor-pointer flex items-center gap-1 text-[#ED4337] border-[#ED4337]"
               >
                 <svg width="15px" height="15px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -287,6 +341,11 @@ export default function Detail({ params }: any) {
                   >
                     Онцлох
                   </div>
+                  <ImageKitProvider urlEndpoint={urlEndpoint} publicKey={publicKey} authenticator={authenticator}>
+                    <div style={{}}>
+                      <IKUpload fileName={"project"} onError={onError} onSuccess={onSuccess} />
+                    </div>
+                  </ImageKitProvider>
                   <div
                     onClick={() => {
                       if (isProductChanged()) {
