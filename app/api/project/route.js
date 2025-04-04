@@ -15,7 +15,7 @@ export async function GET() {
 export async function POST(req) {
   await dbConnect();
   try {
-    const body = await req.json(); // Parse JSON body
+    const body = await req.json();
 
     const data = await ProjectModel.create(body?.body);
     return NextResponse.json({ success: true, data }, { status: 201 });
@@ -27,17 +27,17 @@ export async function POST(req) {
 export async function PUT(req) {
   await dbConnect();
   try {
-    const { body } = await req.json(); // Parse JSON body
+    const { body } = await req.json();
 
-    const { _id: id, ...updateFields } = body; // Extract `id` and update fields
+    const { _id: id, ...updateFields } = body;
 
     if (!id) {
       return NextResponse.json({ success: false, error: "ID is required" }, { status: 400 });
     }
 
     const updatedProject = await ProjectModel.findByIdAndUpdate(id, updateFields, {
-      new: true, // Return the updated document
-      runValidators: true, // Run model validators
+      new: true,
+      runValidators: true,
     });
 
     if (!updatedProject) {

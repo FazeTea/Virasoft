@@ -4,7 +4,7 @@ import axios from "axios";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { Create } from "./Create";
-export const Projects = ({ setProducts, setInitialProduct, products }) => {
+export const Projects = ({ setProducts, products }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -15,7 +15,6 @@ export const Projects = ({ setProducts, setInitialProduct, products }) => {
     const { data } = await axios.get("/api/project");
 
     setProducts(data?.data || []);
-    setInitialProduct(data?.data || []);
   };
 
   return (
@@ -43,7 +42,7 @@ export const Projects = ({ setProducts, setInitialProduct, products }) => {
             alignItems: "center",
           }}
         >
-          <Create handleClose={handleClose} setProducts={setProducts} setInitialProduct={setInitialProduct} />
+          <Create handleClose={handleClose} setProducts={setProducts} />
         </Modal>
         <div className=" w-[90%] py-5 ">
           <DataTable rows={products} />

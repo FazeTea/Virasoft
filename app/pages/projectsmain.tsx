@@ -3,18 +3,32 @@ import { ProjectCard } from "../components/projectcard";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useEffect, useState } from "react";
+
 export const ProjectsMain = () => {
   const [products, setProducts] = useState([]);
   const [filteredProduct, setFilteredProduct] = useState([]);
   const [filter, setfilter] = useState<any>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const getCardsPerRow = () => {
+    const screenWidth = window.innerWidth;
+    const cardWidth = 25 * 16;
+    const availableWidth = screenWidth;
+    const cardsPerRow = Math.floor(availableWidth / cardWidth);
+    return cardsPerRow;
+  };
+  const itemsToShow = getCardsPerRow();
+
   useEffect(() => {
     projecthandler();
   }, []);
+
   const projecthandler = async () => {
     const { data } = await axios.get("/api/project");
     setProducts(data?.data);
     setFilteredProduct(data?.data);
   };
+
   type ProductType = {
     title: string;
     link: string;
@@ -30,9 +44,14 @@ export const ProjectsMain = () => {
       setFilteredProduct(products);
     }
   }, [filter, products]);
+
+  const handleSeeMore = () => {
+    setShowAll(!showAll);
+  };
+
   return (
     <div id="Төслүүд">
-      <div className="flex justify-center text-[3rem] font-bold">Төслүүд</div>
+      <div className="flex justify-center text-[3rem] font-bold  my-20">Төслүүд</div>
       <div className="flex gap-5 px-16 items-center ">
         {filter == null ? (
           <button
@@ -71,8 +90,18 @@ export const ProjectsMain = () => {
           );
         })}
       </div>
-      <div className="flex flex-wrap justify-center">
-        {filteredProduct?.map((el: ProductType, i) => {
+
+      <div className="flex flex-wrap justify-center  ">
+        <button
+          onClick={handleSeeMore}
+          style={{
+            position: "absolute",
+          }}
+          className="right-20 text-[#3FBB46]"
+        >
+          {showAll ? "Төслүүдийг хураах ←" : "Бүх төслүүдийг харах →"}
+        </button>
+        {filteredProduct.slice(0, showAll ? filteredProduct.length : itemsToShow).map((el: ProductType, i) => {
           const isEvenRow = i % 2 === 0; // Determine animation direction
           return (
             <motion.div

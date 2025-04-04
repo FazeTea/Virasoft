@@ -6,7 +6,7 @@ import { ImageKitProvider, IKUpload, IKImage } from "imagekitio-next";
 import { divide } from "lodash";
 const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
-export const Create = ({ setProducts, setInitialProduct, handleClose }: any) => {
+export const Create = ({ setProducts, handleClose }: any) => {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [Category, setCategory] = useState("Web");
@@ -17,7 +17,6 @@ export const Create = ({ setProducts, setInitialProduct, handleClose }: any) => 
   const projectHandler = async () => {
     const { data } = await axios.get("/api/project");
     setProducts(data?.data || []);
-    setInitialProduct(data?.data || []);
   };
   // const handleFileUpload = async (e: any) => {
   //   const file = e;

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-export const Header = () => {
+export const Header = ({ setIsLoggedIn }) => {
   const [selected, setSelected] = useState("Төсөл");
   const comps = ["Төсөл", "Санал"];
   return (
@@ -33,6 +33,12 @@ export const Header = () => {
               </Link>
             );
           })}
+          <div
+            className=" hover:text-white cursor-pointer ms-2  border px-3 py-1"
+            onClick={() => (localStorage.removeItem("isLoggedIn"), window.location.reload())}
+          >
+            Гарах
+          </div>
         </div>
       </div>
     </div>
