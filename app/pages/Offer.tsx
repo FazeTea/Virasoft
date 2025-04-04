@@ -44,7 +44,7 @@ export const Offer = () => {
               харилцааны урлаг юм.
             </div>
             <div className="flex">
-              <Image className="rounded-xl object-cover" src={"/design.png"} alt="" width={550} height={200} />
+              <Image className="rounded-xl object-cover" src={"/design-fixed.png"} alt="" width={550} height={200} />
             </div>
           </div>
         </motion.div>
