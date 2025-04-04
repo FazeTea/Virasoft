@@ -53,7 +53,7 @@ const BackOffice = () => {
       });
       setTimeout(() => {
         setIsLoggedIn(true);
-        localStorage.setItem("isLoggedIn", "true");
+        window !== undefined && window.localStorage.setItem("isLoggedIn", "true");
       }, 2000);
     } else {
       Swal.fire({
@@ -72,7 +72,7 @@ const BackOffice = () => {
     });
   };
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const isLoggedIn = window !== undefined && window.localStorage.getItem("isLoggedIn");
     if (isLoggedIn) {
       setIsLoggedIn(true);
     } else {

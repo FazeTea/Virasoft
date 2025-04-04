@@ -35,7 +35,9 @@ export const Header = ({ setIsLoggedIn }) => {
           })}
           <div
             className=" hover:text-white cursor-pointer ms-2  border px-3 py-1"
-            onClick={() => (localStorage.removeItem("isLoggedIn"), window && window.location.reload())}
+            onClick={() => (
+              window !== undefined && window.localStorage.removeItem("isLoggedIn"), window && window.location.reload()
+            )}
           >
             Гарах
           </div>
