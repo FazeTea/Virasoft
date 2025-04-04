@@ -5,25 +5,74 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 export const ProjectsMain = () => {
   const [products, setProducts] = useState([]);
+  const [filteredProduct, setFilteredProduct] = useState([]);
+  const [filter, setfilter] = useState<any>(null);
   useEffect(() => {
     projecthandler();
   }, []);
   const projecthandler = async () => {
     const { data } = await axios.get("/api/project");
-
     setProducts(data?.data);
+    setFilteredProduct(data?.data);
   };
   type ProductType = {
     title: string;
     link: string;
     thumbnail: string;
+    Category: string;
   };
 
+  useEffect(() => {
+    if (filter) {
+      const filtered = products.filter((product: ProductType) => (product.Category == filter ? product : null));
+      setFilteredProduct(filtered);
+    } else {
+      setFilteredProduct(products);
+    }
+  }, [filter, products]);
   return (
     <div id="Төслүүд">
       <div className="flex justify-center text-[3rem] font-bold">Төслүүд</div>
+      <div className="flex gap-5 px-16 items-center ">
+        {filter == null ? (
+          <button
+            onClick={() => setfilter(null)}
+            className="py-2 px-6 text-lg font-semibold text-white bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:from-[#30C0A5] hover:to-[#3FBB46] rounded"
+          >
+            Бүгд
+          </button>
+        ) : (
+          <button
+            onClick={() => setfilter(null)}
+            className="py-1 px-6 text-lg font-semibold border-2 bg-clip-text text-transparent bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:bg-gradient-to-l hover:from-[#30C0A5] hover:to-[#3FBB46] rounded border-[#3FBB46]"
+          >
+            Бүгд
+          </button>
+        )}
+        {["Web", "App", "System"].map((el, i) => {
+          return el == filter ? (
+            <button
+              key={i}
+              onClick={() => setfilter(null)}
+              className="py-2 px-6 text-lg font-semibold text-white bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:from-[#30C0A5] hover:to-[#3FBB46] rounded"
+            >
+              {el}
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setfilter(el);
+              }}
+              key={i}
+              className="py-1 px-6 text-lg font-semibold border-2 bg-clip-text text-transparent bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:bg-gradient-to-l hover:from-[#30C0A5] hover:to-[#3FBB46] rounded border-[#3FBB46]"
+            >
+              {el}
+            </button>
+          );
+        })}
+      </div>
       <div className="flex flex-wrap justify-center">
-        {products?.map((el: ProductType, i) => {
+        {filteredProduct?.map((el: ProductType, i) => {
           const isEvenRow = i % 2 === 0; // Determine animation direction
           return (
             <motion.div
