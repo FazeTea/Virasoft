@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   await dbConnect();
   try {
-    const data = await ProjectModel.find({});
+    const data = await ProjectModel.find({}).sort({ createdAt: -1 });
     return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ success: false, error: error.message }, { status: 400 });
