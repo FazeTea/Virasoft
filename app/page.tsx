@@ -9,7 +9,17 @@ import { MacbookScroll } from "./components/macbook";
 import { Footer } from "./components/footer";
 import { Form } from "./pages/Form";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // or a loading spinner
+  }
+
   return (
     <div className=" ">
       <Header />
