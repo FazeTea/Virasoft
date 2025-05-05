@@ -51,29 +51,32 @@ export const ProjectsMain = () => {
 
   return (
     <div id="Төслүүд">
-      <div className="flex justify-center text-[3rem] font-bold  my-20">Төслүүд</div>
-      <div className="flex gap-5 px-16 items-center ">
+      <div className="flex justify-center text-[2rem] sm:text-[3rem] font-bold my-10 sm:my-20">Төслүүд</div>
+
+      <div className="flex flex-wrap gap-3 sm:gap-5 px-4 sm:px-16 items-center justify-center">
+        {/* Filter Buttons */}
         {filter == null ? (
           <button
             onClick={() => setfilter(null)}
-            className="py-2 px-6 text-lg font-semibold text-white bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:from-[#30C0A5] hover:to-[#3FBB46] rounded"
+            className="py-2 px-4 sm:px-6 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:from-[#30C0A5] hover:to-[#3FBB46] rounded"
           >
             Бүгд
           </button>
         ) : (
           <button
             onClick={() => setfilter(null)}
-            className="py-1 px-6 text-lg font-semibold border-2 bg-clip-text text-transparent bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:bg-gradient-to-l hover:from-[#30C0A5] hover:to-[#3FBB46] rounded border-[#3FBB46]"
+            className="py-1 px-4 sm:px-6 text-base sm:text-lg font-semibold border-2 bg-clip-text text-transparent bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:bg-gradient-to-l hover:from-[#30C0A5] hover:to-[#3FBB46] rounded border-[#3FBB46]"
           >
             Бүгд
           </button>
         )}
+
         {["Web", "App", "System"].map((el, i) => {
           return el == filter ? (
             <button
               key={i}
               onClick={() => setfilter(null)}
-              className="py-2 px-6 text-lg font-semibold text-white bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:from-[#30C0A5] hover:to-[#3FBB46] rounded"
+              className="py-2 px-4 sm:px-6 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:from-[#30C0A5] hover:to-[#3FBB46] rounded"
             >
               {el}
             </button>
@@ -83,7 +86,7 @@ export const ProjectsMain = () => {
                 setfilter(el);
               }}
               key={i}
-              className="py-1 px-6 text-lg font-semibold border-2 bg-clip-text text-transparent bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:bg-gradient-to-l hover:from-[#30C0A5] hover:to-[#3FBB46] rounded border-[#3FBB46]"
+              className="py-1 px-4 sm:px-6 text-base sm:text-lg font-semibold border-2 bg-clip-text text-transparent bg-gradient-to-r from-[#3FBB46] to-[#30C0A5] hover:bg-gradient-to-l hover:from-[#30C0A5] hover:to-[#3FBB46] rounded border-[#3FBB46]"
             >
               {el}
             </button>
@@ -91,16 +94,14 @@ export const ProjectsMain = () => {
         })}
       </div>
 
-      <div className="flex flex-wrap justify-center  ">
+      <div className="flex flex-wrap justify-center relative mt-8 sm:mt-12">
         <button
           onClick={handleSeeMore}
-          style={{
-            position: "absolute",
-          }}
-          className="right-20 text-[#3FBB46]"
+          className="absolute right-4 sm:right-20 top-0 text-[#3FBB46] text-sm sm:text-base"
         >
           {showAll ? "Төслүүдийг хураах ←" : "Бүх төслүүдийг харах →"}
         </button>
+
         {filteredProduct.slice(0, showAll ? filteredProduct.length : itemsToShow).map((el: ProductType, i) => {
           const isEvenRow = i % 2 === 0; // Determine animation direction
           return (
