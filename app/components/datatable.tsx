@@ -66,7 +66,7 @@ export default function DataTable({ rows }) {
   const router = useRouter();
 
   const handleRowClick = (params) => {
-    router.push(`/backoffice/${params.row._id}`); // Navigate to the detail page
+    router.push(`/backoffice/${params.row._id}`);
   };
 
   return (
